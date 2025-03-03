@@ -69,6 +69,7 @@
 
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const CoffeeCard = ({ coffee }) => {
@@ -96,19 +97,19 @@ const CoffeeCard = ({ coffee }) => {
                 fetch(`http://localhost:5000/newCoffee/${_id}`, {
                     method: 'DELETE'
                 })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        Swal.fire({
-                            title: 'Deleted!',
-                            text: 'Coffee deleted successfully',
-                            icon: 'success',
-                            confirmButtonText: 'Ok'
-                        });
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Coffee deleted successfully',
+                                icon: 'success',
+                                confirmButtonText: 'Ok'
+                            });
 
-                        setIsVisible(false); // Hides the component immediately
-                    }
-                });
+                            setIsVisible(false); // Hides the component immediately
+                        }
+                    });
             }
         });
     };
@@ -123,11 +124,14 @@ const CoffeeCard = ({ coffee }) => {
             <div className="card-body">
                 <h2 className="card-title">Name: {name}</h2>
                 <p>Supplier: {supplier}</p>
-                <p>Quantity: {quantity}</p> 
+                <p>Quantity: {quantity}</p>
             </div>
             <div className="flex flex-col gap-4 justify-center pr-6">
                 <button className="btn btn-primary">View</button>
-                <button className="btn btn-primary">Edit</button>
+                <Link to={`updateCoffee/${_id}`} >
+                    <button className="btn btn-primary">Edit</button>
+                </Link>
+
                 <button className="btn btn-primary" onClick={handleDelete}>Delete</button>
             </div>
         </div>
