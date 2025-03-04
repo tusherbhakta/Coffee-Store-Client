@@ -40,7 +40,7 @@ const UpdateCoffee = () => {
             photo
         }
 
-        console.log(newCoffee);
+        console.log(updatedCoffee);
         fetch(`http://localhost:5000/newcoffee/${_id}`, {
 
             method: 'PUT',
