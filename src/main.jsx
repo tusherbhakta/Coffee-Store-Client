@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import UpdateCoffee from './components/UpdateCoffee.jsx';
 import AddCoffee from './components/AddCoffee.jsx';
+import Login from './components/Login.jsx';
+import Signup from './components/Signup.jsx';
 
 
 const router = createBrowserRouter([
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
     element: <UpdateCoffee></UpdateCoffee>,
     loader: ({params}) => fetch(`http://localhost:5000/newcoffee/${params.id}`),
   },
+  {
+    path: "/login",
+    element:<Login></Login>
+  },
+  {
+    path: "/signup",
+    element:<Signup></Signup>
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(
